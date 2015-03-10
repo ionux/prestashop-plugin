@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The MIT License (MIT)
  * 
@@ -142,22 +141,17 @@ class bitpay extends PaymentModule {
         return $this->display(__FILE__, 'payment.tpl');
     }
 
-    public function hookDisplayPaymentEU($params)
-	{
-		if (!$this->active) {
-			return;
-		}
+    public function hookDisplayPaymentEU($params) {
+        if (!$this->active) {
+            return;
+        }
 
-		if (!$this->checkCurrency($params['cart'])) {
-			return;
-		}
-
-		return array(
-			         'cta_text' => $this->l('Pay with Bitcoin'),
-			         'logo' => Media::getMediaPath(dirname(__FILE__).'/bitcoin.png'),
-			         'action' => $this->context->link->getModuleLink($this->name, 'validation', array(), true)
-		            );
-	}
+        return array(
+                     'cta_text' => $this->l('Pay with Bitcoin'),
+                     'logo' => Media::getMediaPath(dirname(__FILE__).'/bitcoin.png'),
+                     'action' => $this->context->link->getModuleLink($this->name, 'validation', array(), true)
+                    );
+    }
 
     private function _setbitpaySubscription() {
         $this->_html .= '<div style="float: right; width: 440px; height: 150px; border: dashed 1px #666; padding: 8px; margin-left: 12px;">
@@ -213,7 +207,7 @@ class bitpay extends PaymentModule {
         // Remember which speed has been selected and display that upon reaching the settings page; default to low
         if (Configuration::get('bitpay_TXSPEED') == "high") {
             $highSelected = "selected=\"selected\"";
-        } elseif (Configuration::get('bitpay_TXSPEED') == "medium") {
+        } else if (Configuration::get('bitpay_TXSPEED') == "medium") {
             $mediumSelected = "selected=\"selected\"";
         } else {
             $lowSelected = "selected=\"selected\"";
