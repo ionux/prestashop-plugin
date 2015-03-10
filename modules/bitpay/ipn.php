@@ -3,7 +3,7 @@
 /**
  * The MIT License (MIT)
  * 
- * Copyright (c) 2011-2014 BitPay
+ * Copyright (c) 2011-2015 BitPay
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,56 +24,41 @@
  * THE SOFTWARE.
  */
 	
-	include(dirname(__FILE__).'/../../config/config.inc.php');
-	include(dirname(__FILE__).'/../../header.php');
-	include(dirname(__FILE__).'/bitpay.php');
-		
-	$handle = fopen('php://input','r');
-	$jsonInput = fgets($handle);
-	
-	if(function_exists('json_decode'))
-  {
-		$decoded = json_decode($jsonInput, true);
-  }
-	else
-		$decoded = rmJSONdecode($jsonInput);
+include(dirname(__FILE__).'/../../config/config.inc.php');
+include(dirname(__FILE__).'/../../header.php');
+include(dirname(__FILE__).'/bitpay.php');
 
-	fclose($handle);
+$handle    = fopen('php://input', 'r');
+$jsonInput = fgets($handle);
+$decoded   = json_decode($jsonInput, true);
+$posData   = json_decode($decoded['posData']);
+$order     = (int)Order::getOrderByCartId($posData->cart_id);
 
-	if(function_exists('json_decode'))
-  {
-		$posData = json_decode($decoded['posData']);
-  }
-	else
-		$posData = rmJSONdecode($decoded['posData']);
-	
-  $order = (int)Order::getOrderByCartId($posData->cart_id);
-	if ($posData->hash == crypt($posData->cart_id, Configuration::get('bitpay_APIKEY')))
-	{	
-		$bitpay = new bitpay();		
-		
-		if (in_array($decoded['status'], array('paid', 'confirmed', 'complete')))
-		{
-      if ($order == 0){
-        $key = $posData->key;
-        $bitpay->validateOrder($posData->cart_id, Configuration::get('PS_OS_PAYMENT'), $decoded['price'], $bitpay->displayName, null, array(), null, false, $key);
-      }
-      else {
-        if (empty(Context::getContext()->link))
-          Context::getContext()->link = new Link(); // workaround a prestashop bug so email is sent 
-        $key = $posData->key;
-        $order = new Order((int)Order::getOrderByCartId($posData->cart_id));
-        $new_history = new OrderHistory();
-        $new_history->id_order = (int)$order->id;
-        $order_status = (int)Configuration::get('PS_OS_PAYMENT');
-        $new_history->changeIdOrderState((int)$order_status, $order, true);
-        $new_history->addWithemail(true);
-      }
-		}
-		$bitpay->writeDetails($bitpay->currentOrder, $posData->cart_id, $decoded['id'], $decoded['status']);
-		
-	}
-	else 
-	{
-		bplog('Hash does not match');
-	}
+fclose($handle);
+
+if ($posData->hash == crypt($posData->cart_id, Configuration::get('bitpay_APIKEY'))) {	
+    $bitpay = new bitpay();		
+
+	if (in_array($decoded['status'], array('paid', 'confirmed', 'complete'))) {
+        if ($order == 0) {
+            $key = $posData->key;
+            $bitpay->validateOrder($posData->cart_id, Configuration::get('PS_OS_PAYMENT'), $decoded['price'], $bitpay->displayName, null, array(), null, false, $key);
+        } else {
+            if (empty(Context::getContext()->link)) {
+                Context::getContext()->link = new Link(); // workaround a prestashop bug so email is sent 
+            }
+
+            $key = $posData->key;
+            $order = new Order((int)Order::getOrderByCartId($posData->cart_id));
+            $new_history = new OrderHistory();
+            $new_history->id_order = (int)$order->id;
+            $order_status = (int)Configuration::get('PS_OS_PAYMENT');
+            $new_history->changeIdOrderState((int)$order_status, $order, true);
+            $new_history->addWithemail(true);
+        }
+    }
+
+    $bitpay->writeDetails($bitpay->currentOrder, $posData->cart_id, $decoded['id'], $decoded['status']);
+} else {
+    bplog('[ERROR] In Bitpay module, ipn.php: Hash does not match');
+}
