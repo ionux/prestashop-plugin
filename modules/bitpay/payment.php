@@ -3,7 +3,7 @@
 /**
  * The MIT License (MIT)
  * 
- * Copyright (c) 2011-2014 BitPay
+ * Copyright (c) 2011-2015 BitPay
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,6 +31,7 @@ include(dirname(__FILE__).'/bitpay.php');
 $bitpay = new bitpay();
 
 Tools::redirect(Context::getContext()->link->getModuleLink('bitpay', 'payment'));
+
 include_once(dirname(__FILE__).'/../../footer.php');
 
 ?>
