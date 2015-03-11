@@ -142,15 +142,17 @@ class bitpay extends PaymentModule {
     }
 
     public function hookDisplayPaymentEU($params) {
-        if (!$this->active) {
-            return;
-        }
+        return $this->hookPayment($params);
 
-        return array(
-                     'cta_text' => $this->l('Pay with Bitcoin'),
-                     'logo' => Media::getMediaPath(dirname(__FILE__).'/bitcoin.png'),
-                     'action' => $this->context->link->getModuleLink($this->name, 'validation', array(), true)
-                    );
+        //if (!$this->active) {
+        //    return;
+        //}
+
+        //return array(
+        //             'cta_text' => $this->l('Pay with Bitcoin'),
+        //             'logo' => Media::getMediaPath(dirname(__FILE__).'/bitcoin.png'),
+        //             'action' => $this->context->link->getModuleLink($this->name, 'validation', array(), true)
+        //            );
     }
 
     private function _setbitpaySubscription() {
