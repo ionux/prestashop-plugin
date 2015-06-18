@@ -1,6 +1,17 @@
-# Description
+# PrestaShop BitPay Payment Plugin
 
-Bitcoin payment plugin for PrestaShop using the bitpay.com service.
+
+## Brief Description
+
+This plugin adds the ability for a merchant to accept bitcoin payments in their PrestaShop eCommerce store via BitPay.
+
+
+## Detail Description
+
+Bitcoin is a powerful new peer-to-peer payment platform for the next generation of financial technology. The decentralized nature of the Bitcoin network allows for a highly resilient value transfer infrastructure, and this allows merchants to gain greater profits.
+
+This is because there are little to no fees for transferring Bitcoins from one person to another. Unlike other payment methods, Bitcoin payments cannot be reversed, so once you are paid you can ship!  No waiting days for a payment to clear.
+
 
 [![Build Status](https://travis-ci.org/bitpay/prestashop-plugin.svg?branch=master)](https://travis-ci.org/bitpay/prestashop-plugin)
 
@@ -10,15 +21,16 @@ Bitcoin payment plugin for PrestaShop using the bitpay.com service.
 To get up and running with our plugin quickly, see the GUIDE here: https://github.com/bitpay/prestashop-plugin/blob/master/GUIDE.md
 
 
-# Support
+## Support
 
-## BitPay Support
+### BitPay Support
 
+* [BitPay Labs](https://labs.bitpay.com/c/plugins/prestashop)
+  * Post a question in our discussion forums.
 * [GitHub Issues](https://github.com/bitpay/prestashop-plugin/issues)
   * Open an issue if you are having issues with this plugin.
 * [Support](https://support.bitpay.com)
-  * BitPay merchant support documentation
-
+  * BitPay merchant support documentation and knowledgebase.
 
 ## PrestaShop Support
 
@@ -27,31 +39,34 @@ To get up and running with our plugin quickly, see the GUIDE here: https://githu
 * [Support Forums](http://www.prestashop.com/forums/)
 
 
-# Contribute
+## Troubleshooting
 
-To contribute to this project, please fork and submit a pull request.
+1. Ensure a valid SSL certificate is installed on your server. Also ensure your root CA cert is updated. If your CA cert is not current, you will see curl SSL verification errors.
+2. Verify that your web server is not blocking POSTs from servers it may not recognize. Double check this on your firewall as well, if one is being used.
+3. Check the version of this plugin against the official plugin repository to ensure you are using the latest version. Your issue might have been addressed in a newer version! See the [Releases](https://github.com/bitpay/prestashop-plugin/releases) page for the latest.
+4. If all else fails, enable debug logging in the plugin options and send the log along with an email describing your issue **in detail** to support@bitpay.com.
+
+**TIP**: When contacting support it will help us is you provide:
+
+* The versions of Prestashop, PHP and this plugin
+* Other plugins you have installed
+  * Some plugins do not play nicely with others!
+* Configuration settings for the plugin (most merchants take screenshots)
+* Any log files that will help
+  * Web server error logs are best!
+* Screenshots of any error messages, if applicable
 
 
-# License
 
-The MIT License (MIT)
+## Contribute
 
-Copyright (c) 2011-2015 BitPay
+Would you like to help with this project?  Great!  You don't have to be a developer, either.  If you've found a bug or have an idea for an improvement, please open an [issue](https://github.com/bitpay/prestashop-plugin/issues) and tell us about it.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+If you *are* a developer wanting contribute an enhancement, bugfix or other patch to this project, please fork this repository and submit a pull request detailing your changes.  We review all PRs!
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
+This open source project is released under the [MIT license](http://opensource.org/licenses/MIT) which means if you would like to use this project's code in your own project you are free to do so.  Speaking of, if you have used our code in a cool new project we would like to hear about it!  Please send us an email or post a new thread on [BitPay Labs](https://labs.bitpay.com).
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+
+## License
+
+Please refer to the [LICENSE](https://github.com/bitpay/prestashop-plugin/blob/master/LICENSE) file that came with this project.
