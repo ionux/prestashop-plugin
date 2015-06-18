@@ -69,4 +69,4 @@ This open source project is released under the [MIT license](http://opensource.o
 
 ## License
 
-Please refer to the [LICENSE](https://github.com/bitpay/prestashop-plugin/blob/master/LICENSE) file that came with this project.
+This project is released under the MIT License and Copyright (c) 2014-2015, [BitPay](https://bitpay.com), Inc. Please refer to the [LICENSE](https://github.com/bitpay/prestashop-plugin/blob/master/LICENSE) file that came with this project for the specific text or, if a copy was not provided with these files, you can view the text of this license here: http://opensource.org/licenses/MIT.
