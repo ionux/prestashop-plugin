@@ -5,20 +5,20 @@ You must have a BitPay merchant account to use this plugin.  It's free to [sign-
 
 ## Server Requirements
 
-+ PrestaShop 1.4+
-+ PHP 5+
++ PrestaShop 1.5+
++ PHP 5.3+
 + Curl PHP Extension
 + JSON PHP Extension
 
 ## Plugin Configuration
 
-###For Prestashop versions 1.5 and older:
+###For Prestashop version 1.5:
 1. Upload files to your PrestaShop installation.<br />
 2. Go to your PrestaShop administration. Modules -> Payments & Gateways -> "BitPay" click [Install]<br />
 3. Go to your PrestaShop administration. Modules -> Payments & Gateways -> "BitPay" click [Configure]<br />
 4. Create an API Key in your bitpay account at bitpay.com.<br />
 5. Enter your API Key from step 4.
-6. Choose "Low" or "Medium" Speed. The High Speed setting is broken.
+6. Choose "Low", "Medium" or "High" Speed.
 
 ###For Prestashop versions 1.6 and newer:
 1. Upload files to your PrestaShop installation.<br />
